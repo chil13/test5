@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,7 +51,7 @@ public class RetryListServlet extends HttpServlet {
 		QuestionDAO qDAO = new QuestionDAO(connection);
 		try {
 			ArrayList<QuestionBean> qList = new ArrayList<QuestionBean>();
-			qList = qDAO.questionById((Array) retryList);
+			qList = qDAO.questionById( retryList);
 
 
 			for(int i = 0; i == qList.size(); i++) {

@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import bean.QuestionBean;
+import bean.RetryBean;
 
 public class QuestionDAO {
 	private Connection connection;
@@ -16,7 +16,7 @@ public class QuestionDAO {
 		this.connection = connection;
 	}
 
-	public  ArrayList<QuestionBean> questionById(Array retryList) throws SQLException{
+	public  ArrayList<QuestionBean> questionById(ArrayList<RetryBean> retryList) throws SQLException{
 
 		ArrayList<QuestionBean> list = new ArrayList<QuestionBean>();
 
