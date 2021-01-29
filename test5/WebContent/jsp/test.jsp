@@ -7,7 +7,7 @@
 <title>test</title>
 </head>
 <body>
-	AWS test
+	${loginL_name}
 	<br>
 
 
