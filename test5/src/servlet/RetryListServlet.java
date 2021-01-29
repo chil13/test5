@@ -48,21 +48,15 @@ public class RetryListServlet extends HttpServlet {
 		}
 		System.out.println(retryList.size());
 
+
 		QuestionDAO qDAO = new QuestionDAO(connection);
 		try {
 			ArrayList<QuestionBean> qList = new ArrayList<QuestionBean>();
 			qList = qDAO.questionById( retryList);
 
-
-			for(int i = 0; i == qList.size(); i++) {
-				System.out.println( "qList:" + qList.get(i).getQuestion() );
-			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-
 
 	}
 

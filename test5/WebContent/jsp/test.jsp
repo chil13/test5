@@ -14,6 +14,7 @@
 	<a id="download">Download</a>
 	<button id="start">Start</button>
 	<button id="stop">Stop</button>
+
 	<script>
 		// for html
 		const downloadLink = document.getElementById('download');
@@ -34,9 +35,10 @@
 			downloadLink.download = 'test.wav';
 			downloadLink.click();
 
-			audioContext.close().then(function() {
+			audioContext.close();
+			/* audioContext.close().then(function() {
 				stopButton.setAttribute('disabled', 'disabled');
-			});
+			}); */
 		}
 
 		// export WAV from audio float data
@@ -147,11 +149,17 @@
 			}, 10000);
 		};
 
+
 		// getUserMedia
-		navigator.mediaDevices.getUserMedia({
-			audio : true,
-			video : false
-		}).then(handleSuccess);
+		startButton.addEventListener('click', function() {
+			navigator.mediaDevices.getUserMedia({
+				audio : true,
+				video : false
+			}).then(handleSuccess);
+		});
+
+
+
 	</script>
 
 </body>

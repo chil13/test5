@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<a href="Interview">一問一答に挑戦！</a><br>
+	<a href="TestServlet">一問一答に挑戦！</a><br>
 	<a href="RetryList">もう一度リスト</a><br>
 	<a href="Contact">問い合わせ</a><br><br>
 	<a href="mmIndex">HOME</a><br>

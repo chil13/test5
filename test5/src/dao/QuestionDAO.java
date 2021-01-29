@@ -23,11 +23,27 @@ public class QuestionDAO {
 
 		PreparedStatement preparedStatement = null;
 		try {
-				String sql = "SELECT question,intention FROM question WHERE q_id = ?";
-				preparedStatement = connection.prepareStatement(sql);
-				System.out.println("ここ徹？");
 
-				preparedStatement.setArray(1, retryList);
+				String listStr = "(";
+				for(int i = 1 ; i <= retryList.size() ; i++ ){
+					if(i == retryList.size()) {
+						listStr += "?";
+					}else {
+						listStr += "?,";
+					}
+				}
+				listStr += ")";
+
+
+				String sql = "SELECT question,intention FROM question WHERE q_id IN " + listStr;
+				System.out.println(sql);
+
+				preparedStatement = connection.prepareStatement(sql);
+
+				for(int i = 1 ; i <= retryList.size() ; i++ ) {
+					preparedStatement.setInt(i, retryList.get(i-1).getQ_id());
+				}
+
 
 
 				System.out.println("kokotooru ");
