@@ -2,7 +2,6 @@ package bean;
 
 public class QuestionBean {
 
-
 	private int q_id;
 	private String question;
 	private String intenstion;
@@ -32,8 +31,4 @@ public class QuestionBean {
 		this.intenstion = intenstion;
 	}
 
-	@Override
-	public String toString() {
-		return "QuestionBean [q_id=" + q_id + ", question=" + question + ", intenstion=" + intenstion + "]";
-	}
 }
