@@ -12,11 +12,7 @@
 	<div id="timer">00:00:000</div>
 	<br>
 
-	<c:out value="${question}"></c:out>
-
-	<a href="mmMenuServlet">MENUに戻る</a>
-	<br>
-	<br>
+	<c:out value="${question}"></c:out><br><br>
 
 	<button id="start">Start</button>
 	<button id="stop">Stop</button>
