@@ -1,6 +1,7 @@
 package bean;
 
 public class RetryBean {
+
 	private int q_id;
 
 	public int getQ_id() {
@@ -11,4 +12,8 @@ public class RetryBean {
 		this.q_id = q_id;
 	}
 
+	@Override
+	public String toString() {
+		return "RetryBean [q_id=" + q_id + "]";
+	}
 }

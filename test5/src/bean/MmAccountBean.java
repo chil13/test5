@@ -1,6 +1,7 @@
 package bean;
 
 public class MmAccountBean {
+
 	private int u_id;
 	private String name;
 	private String pass;
@@ -27,5 +28,10 @@ public class MmAccountBean {
 
 	public void pass(String pass) {
 		this.pass = pass;
+	}
+
+	@Override
+	public String toString() {
+		return "MmAccountBean [u_id=" + u_id + ", name=" + name + ", pass=" + pass + "]";
 	}
 }
