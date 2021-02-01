@@ -9,6 +9,10 @@
 </head>
 <body>
 
+	<div class="non-register">
+		<c:out value="${nonMsg}"></c:out>
+	</div>
+
 
 	<form name=form1 action="Test" method="get">
 		<c:forEach var="qList" items="${qList}">
@@ -17,6 +21,10 @@
 			<br>
 		</c:forEach>
 	</form>
+
+	<br>
+
+	<a href="mmMenuServlet">MENUに戻る</a>
 
 
 

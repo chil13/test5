@@ -25,12 +25,12 @@ import dao.QuestionDAO;
 @WebServlet("/RetryList")
 public class RetryListServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
 		int u_id = (int) session.getAttribute("loginU_id");
-		System.out.println("u_idStr:"+u_id);
-
+		System.out.println("u_idStr:" + u_id);
 
 		ArrayList<RetryBean> retryList = new ArrayList<RetryBean>();
 
@@ -43,34 +43,39 @@ public class RetryListServlet extends HttpServlet {
 		MmAccountDAO mmAccountDAO = new MmAccountDAO(connection);
 
 		try {
-			retryList =mmAccountDAO.retry(u_id);
+			retryList = mmAccountDAO.retry(u_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		System.out.println(retryList.size());
 
-
-		QuestionDAO qDAO = new QuestionDAO(connection);
-		try {
-			ArrayList<QuestionBean> qList = new ArrayList<QuestionBean>();
-			qList = qDAO.questionById(retryList);
-			request.setAttribute("qList",qList);
-
+		if (retryList.size() == 0) {
+			String nonMsg = "現在登録がありません。";
+			request.setAttribute("nonMsg", nonMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/retry.jsp");
 			dispatcher.forward(request, response);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} else {
+			QuestionDAO qDAO = new QuestionDAO(connection);
+			try {
+				ArrayList<QuestionBean> qList = new ArrayList<QuestionBean>();
+				qList = qDAO.questionById(retryList);
+				request.setAttribute("qList", qList);
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/retry.jsp");
+				dispatcher.forward(request, response);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
-
 	}
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
