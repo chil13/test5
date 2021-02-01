@@ -52,7 +52,8 @@ public class RetryListServlet extends HttpServlet {
 		QuestionDAO qDAO = new QuestionDAO(connection);
 		try {
 			ArrayList<QuestionBean> qList = new ArrayList<QuestionBean>();
-			qList = qDAO.questionById( retryList);
+			qList = qDAO.questionById(retryList);
+			System.out.println(qList.get(0).getQuestion());
 
 		} catch (SQLException e) {
 			e.printStackTrace();
