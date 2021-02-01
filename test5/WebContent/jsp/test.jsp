@@ -12,7 +12,9 @@
 	<div id="timer">00:00:000</div>
 	<br>
 
-	<c:out value="${question}"></c:out><br><br>
+	<c:out value="${question}"></c:out>
+	<br>
+	<br>
 
 	<button id="start">Start</button>
 	<button id="stop">Stop</button>
@@ -20,6 +22,16 @@
 	<a id="download">保存</a>
 	<br>
 	<br>
+
+	<form action=RetryRegister method="post">
+		<input type="hidden" name="q_id" value="${q_id}">
+		<button type="submit">
+			<div class="button-small color-green">【もう1度リスト】へ登録</div>
+		</button>
+	</form>
+
+	<br>
+
 
 	<form action="Test" method="post">
 		<a href="mmMenuServlet">MENUに戻る</a>

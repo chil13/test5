@@ -27,23 +27,42 @@ public class TestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		System.out.println("つながる？");
+		String reQuestion = request.getParameter("question");
+		System.out.println("reQuestion:"+reQuestion);
 
-		Random random = new Random();
-		int randomValue = random.nextInt(100);
-		System.out.println("randomValue:" + randomValue);
 
-
-		ArrayList<QuestionBean> testList = new ArrayList<QuestionBean>();
 		ConnectionManager connectionManager = new ConnectionManager();
 		Connection connection = connectionManager.getConnection();
 		QuestionDAO questionDAO = new QuestionDAO(connection);
+
+		int q_value = 0;
+
+		if(reQuestion == null) {
+			System.out.println("わわあわ");
+			Random random = new Random();
+			q_value = random.nextInt(100);
+			System.out.println("randomValue:" + q_value);
+		}else {
+			ArrayList<QuestionBean> list = new ArrayList<QuestionBean>();
+			try {
+				list = questionDAO.reQuestion(reQuestion);
+				q_value =list.get(0).getQ_id();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		ArrayList<QuestionBean> testList = new ArrayList<QuestionBean>();
+
 		try {
-			testList = questionDAO.test(randomValue);
+			testList = questionDAO.test(q_value);
 			String q = testList.get(0).getQuestion();
 			String intention = testList.get(0).getIntention();
 			System.out.println("q:"+ q);
 			System.out.println("intention:" + intention);
 
+			request.setAttribute("q_id", q_value);
 			request.setAttribute("question", q);
 			request.setAttribute("intention", intention);
 

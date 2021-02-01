@@ -59,46 +59,6 @@ public class MmAccountDAO {
 		return list;
 	}
 
-/*
-	public  List<RetryBean> retry(int u_id) {
-
-		List<RetryBean> list =null;
-
-		PreparedStatement preparedStatement = null;
-		try {
-
-			// ステートメントの作成
-			String sql = "SELECT q_id FROM retry WHERE u_id = ?";
-			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, u_id);
-
-			ResultSet resultSet = preparedStatement.executeQuery();
-
-			RetryBean bean = new RetryBean();
-			while (resultSet.next()) {
-				bean.setQ_id(resultSet.getInt("q_id"));
-				list.add(bean);
-			}
-		}catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("テーブルの取得失敗");
-		} finally {
-			try {
-				if (preparedStatement != null) {
-					preparedStatement.close();
-					System.out.println("ステートメントの解放に成功しました");
-				}
-
-
-			} catch (Exception e) {
-				//throw new SQLException("ステートメントの解放に失敗しました", e);
-			}
-
-		}
-
-		return list;
-	}
-*/
 	public  ArrayList<RetryBean> retry(int id) throws SQLException{
 
 		ArrayList<RetryBean> list = new ArrayList<RetryBean>();
@@ -131,6 +91,35 @@ public class MmAccountDAO {
 
 		}
 		return list;
+	}
+
+
+
+	public int insert(RetryBean retryBean) throws SQLException{
+		PreparedStatement preparedStatement = null;
+
+		try{
+			// ステートメントの作成
+			String sql = "INSERT INTO retry (u_id,q_id) VALUES (?, ?)";
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, retryBean.getU_id());
+			preparedStatement.setInt(2, retryBean.getQ_id());
+
+			int result =preparedStatement.executeUpdate();
+			return result;
+
+		}catch (SQLException e) {
+			throw new SQLException("taskテーブルのINSERTに失敗しました", e);
+		}finally {
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+					System.out.println("ステートメントの解放に成功しました");
+				}
+			} catch (SQLException e) {
+				throw new SQLException("ステートメントの解放に失敗しました", e);
+			}
+		}
 	}
 
 

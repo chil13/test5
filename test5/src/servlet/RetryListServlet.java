@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,13 +54,10 @@ public class RetryListServlet extends HttpServlet {
 		try {
 			ArrayList<QuestionBean> qList = new ArrayList<QuestionBean>();
 			qList = qDAO.questionById(retryList);
-			//request.setAttribute("qList",qList);
-			String[] qArray = null;
-			for(int i = 1; i < qList.size(); i++) {
-				System.out.println(qList.get(i-1).getQuestion());
-			}
+			request.setAttribute("qList",qList);
 
-			request.setAttribute("qArray", qArray);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/retry.jsp");
+			dispatcher.forward(request, response);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -9,9 +9,16 @@
 </head>
 <body>
 
-	<c:forEach var="qList" items="${qList}">
-		<option>${qList}</option>
-	</c:forEach>
+
+	<form name=form1 action="Test" method="get">
+		<c:forEach var="qList" items="${qList}">
+			■<input type="submit" id="question" name="question"
+				value="${qList.question}">
+			<br>
+		</c:forEach>
+	</form>
+
+
 
 	<div class="error-area-one">
 		<c:out value="${errMsg}"></c:out>
